@@ -7,10 +7,18 @@ public class Item : MonoBehaviour
 {
     [SerializeField] private int ItemScoreValue;
     [SerializeField] private int ItemSpeedValue;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip spawnClip, destroyClip;
+    [SerializeField] private float audioSourcePitch;
+    
+    private SpriteRenderer _spriteRenderer;
 
     private void Start()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         GameEvents.Instance.OnGameOver += GameOver;
+        _audioSource.pitch = audioSourcePitch;
+        _audioSource.PlayOneShot(spawnClip);
     }
 
     private void OnDestroy()
@@ -25,7 +33,10 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameEvents.Instance.ItemCollide(ItemScoreValue, ItemSpeedValue); 
-        Destroy(gameObject);
+        _audioSource.pitch = 1;
+        _audioSource.PlayOneShot(destroyClip);
+        GameEvents.Instance.ItemCollide(ItemScoreValue, ItemSpeedValue);
+        _spriteRenderer.enabled = false;
+        Destroy(gameObject,1f);
     }
 }

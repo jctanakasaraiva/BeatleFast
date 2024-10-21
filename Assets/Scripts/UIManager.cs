@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     {
         GameEvents.Instance.OnScreenUpdate += UpdateScreen;
         GameEvents.Instance.OnGameOver += ShowGameOverScreen;
+        ShowNewGameScreen();
     }
     
     private void UpdateScreen(int score, int speed)

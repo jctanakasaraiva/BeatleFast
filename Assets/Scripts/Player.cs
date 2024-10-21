@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip walk, walkFast;
+    [SerializeField] private AudioClip walk;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float rotationAngle = 0;
