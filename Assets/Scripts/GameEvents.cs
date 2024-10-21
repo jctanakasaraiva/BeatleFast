@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class GameEvents : MonoBehaviour
@@ -23,6 +24,9 @@ public class GameEvents : MonoBehaviour
 
     public event Action<bool> OnGameOver;
     public void GameOver(bool gameOver) => OnGameOver?.Invoke(gameOver);
+
+    public event Action<Vector3> OnPlayerMove;
+    public void PlayerMove(Vector3 playerPosition) => OnPlayerMove?.Invoke(playerPosition);
 
 
 

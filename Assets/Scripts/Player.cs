@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
         if (gameOver) return;
         ApplySpeed();
         ApplyRotation();
-
+        GameEvents.Instance.PlayerMove(transform.position);
     }
 
     private void updateSpeed(int score, float speed)

@@ -859,6 +859,7 @@ MonoBehaviour:
   lifeTime: 5
   horizontal: 72
   vertical: 33
+  minDistanceToSpawnItem: 40
   items:
   - itemName: Banana
     chance: 60
