@@ -12,9 +12,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //GameEvents.Instance.OnDoorAreaEnter += UpdateScore;
         GameEvents.Instance.OnItemCollide += UpdateScore;
         GameEvents.Instance.OnStartGame += SummonerPlayer;
+        GameEvents.Instance.OnStartGame += StartGame;
+    }
+
+    private void StartGame()
+    {
+        playerScore = 0;
+        playerSpeed = 0;
+        GameEvents.Instance.ScreenUpdate(playerScore, playerSpeed);
     }
 
     private void UpdateScore(int score, int speed)

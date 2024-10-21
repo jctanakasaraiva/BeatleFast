@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip walk, walkFast;
     private Rigidbody2D rb;
     private Vector2 movement;
     private float rotationAngle = 0;
@@ -33,10 +35,23 @@ public class Player : MonoBehaviour
         if (movement.y > 0)
         {
             movement.y += 1;
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.clip = walk;
+                _audioSource.pitch = 2.5f;
+                _audioSource.Play();
+            }
         }
         else
         {
             movement.y = 1;
+            
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.clip = walk;
+                _audioSource.pitch = 2;
+                _audioSource.Play();
+            }
         }
         rb.velocity = transform.right * (movement.y * moveSpeed);
     }

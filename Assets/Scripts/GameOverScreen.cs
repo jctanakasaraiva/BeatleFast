@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class GameOverScreen : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
+    [SerializeField] private AudioSource gameOverSound;
     private void Start()
     {
         restartButton.onClick.AddListener(RestartClicked);
+        gameOverSound.Play();
     }
 
     private void RestartClicked()
