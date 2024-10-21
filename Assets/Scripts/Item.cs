@@ -6,7 +6,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [SerializeField] private int ItemScoreValue;
-    [SerializeField] private int ItemSpeedValue;
+    [SerializeField] private float ItemSpeedValue;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip spawnClip, destroyClip;
     [SerializeField] private float audioSourcePitch;

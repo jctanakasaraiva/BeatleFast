@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
         ShowNewGameScreen();
     }
     
-    private void UpdateScreen(int score, int speed)
+    private void UpdateScreen(int score, float speed)
     {
         scoreText.text = "Score: " + score.ToString() + "\t\tSpeed: " + speed.ToString();
     }

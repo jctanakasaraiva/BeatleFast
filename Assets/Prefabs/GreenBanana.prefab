@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemScoreValue: 89
-  ItemSpeedValue: 89
+  ItemSpeedValue: 20
   _audioSource: {fileID: 2906418398401046298}
   spawnClip: {fileID: 8300000, guid: d93fe329596821e4f8c6dab8794e6fd4, type: 3}
   destroyClip: {fileID: 8300000, guid: de9e97e8535d25a48a34a5b2788fb90b, type: 3}

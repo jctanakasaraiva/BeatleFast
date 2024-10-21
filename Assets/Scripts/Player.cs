@@ -13,7 +13,12 @@ public class Player : MonoBehaviour
     private bool gameOver;
 
 
-    private void Awake() => rb = GetComponent<Rigidbody2D>();
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        GameEvents.Instance.OnItemCollide += updateSpeed;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -28,6 +33,12 @@ public class Player : MonoBehaviour
         ApplySpeed();
         ApplyRotation();
 
+    }
+
+    private void updateSpeed(int score, float speed)
+    {
+        moveSpeed += speed;
+        rotationSpeed += speed / 30;
     }
     
     private void ApplySpeed()

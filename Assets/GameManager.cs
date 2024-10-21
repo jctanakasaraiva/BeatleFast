@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject PlayerPrefab;
     private int playerScore;
-    private int playerSpeed;
+    private float playerSpeed;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         GameEvents.Instance.ScreenUpdate(playerScore, playerSpeed);
     }
 
-    private void UpdateScore(int score, int speed)
+    private void UpdateScore(int score, float speed)
     {
         playerScore += score;
         playerSpeed += speed;

@@ -15,11 +15,11 @@ public class GameEvents : MonoBehaviour
     public event Action OnStartGame;
     public void StartGame() => OnStartGame?.Invoke();
 
-    public event Action<int, int> OnItemCollide;
-    public void ItemCollide(int itemScore, int itemSpeed) => OnItemCollide?.Invoke(itemScore, itemSpeed);
+    public event Action<int, float> OnItemCollide;
+    public void ItemCollide(int itemScore, float itemSpeed) => OnItemCollide?.Invoke(itemScore, itemSpeed);
 
-    public event Action<int, int> OnScreenUpdate;
-    public void ScreenUpdate(int updateScore, int updateSpeed) => OnScreenUpdate?.Invoke(updateScore, updateSpeed);
+    public event Action<int, float> OnScreenUpdate;
+    public void ScreenUpdate(int updateScore, float updateSpeed) => OnScreenUpdate?.Invoke(updateScore, updateSpeed);
 
     public event Action<bool> OnGameOver;
     public void GameOver(bool gameOver) => OnGameOver?.Invoke(gameOver);
