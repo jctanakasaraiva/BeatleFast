@@ -435,7 +435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1787634570611653303}
-  - component: {fileID: 2997146310999775989}
+  - component: {fileID: 2093149763714334641}
   - component: {fileID: 6342000190747787367}
   m_Layer: 0
   m_Name: SprayBotle
@@ -461,7 +461,7 @@ Transform:
   - {fileID: 6505208754077586135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2997146310999775989
+--- !u!114 &2093149763714334641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -470,13 +470,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6195175555081632492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895cf3ea0af8db14cb2c704e3a73cfa5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f2f95a98faeaba4f9787c99257e05b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprayPrefab: {fileID: 2978469025512978578, guid: b567b9d7a9ea6e740acdd5a69be06329, type: 3}
-  spray: {fileID: 5023281032606051869}
+  ObjectToGrow: {fileID: 5023281032606051869}
+  minScale: 0
   maxScale: 1
-  spraySpeed: 2
+  growSpeed: 3
 --- !u!58 &6342000190747787367
 CircleCollider2D:
   m_ObjectHideFlags: 0
