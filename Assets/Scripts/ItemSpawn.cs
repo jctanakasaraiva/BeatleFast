@@ -38,7 +38,6 @@ public class ItemSpawn : MonoBehaviour
             var selectedPrefab = GetRandomItemPrefab();
             var gameObject = Instantiate(selectedPrefab, position,Quaternion.identity);
             yield return new WaitForSeconds(secondsToSpawn);
-            print(position + " - " + playerPosition + " = " + Vector3.Distance(playerPosition,position));
             Destroy(gameObject, lifeTime);
         }
     }

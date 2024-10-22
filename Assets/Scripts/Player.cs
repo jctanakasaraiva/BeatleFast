@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Border")
+        if (collider.gameObject.tag == "Border" || collider.gameObject.tag == "Enemy")
         {
             GameOver();
         }

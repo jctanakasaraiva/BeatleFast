@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SprayController : MonoBehaviour
 {
@@ -12,6 +13,17 @@ public class SprayController : MonoBehaviour
 
     private Vector3 sprayScale;
     private bool sprayActive;
+
+    private void Start()
+    {
+        GameEvents.Instance.OnGameOver += GameOver;
+        var itemScaleX = Random.Range(-1, 1);
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.Instance.OnGameOver -= GameOver;
+    }
 
     private void Update()
     {
@@ -39,5 +51,10 @@ public class SprayController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         sprayActive = false;
+    }
+    
+    private void GameOver(bool gameOver)
+    {
+        Destroy(gameObject);
     }
 }
