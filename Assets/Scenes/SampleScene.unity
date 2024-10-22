@@ -891,6 +891,12 @@ MonoBehaviour:
   - itemName: Green Banana
     chance: 0.1
     prefab: {fileID: 7218465843421195723, guid: 15d97228f0a6f6c48b258894280f0e4c, type: 3}
+  - itemName: Spikes
+    chance: 30
+    prefab: {fileID: 4827318515235272966, guid: b993b60f135bafe49b28d69be6383e6b, type: 3}
+  - itemName: SprayBottle
+    chance: 30
+    prefab: {fileID: 6195175555081632492, guid: 7f5ef53b2a5c37b40b7776407053790c, type: 3}
 --- !u!1 &2079813640
 GameObject:
   m_ObjectHideFlags: 0

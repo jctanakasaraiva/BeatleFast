@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,6 +28,7 @@ public class ItemSpawn : MonoBehaviour
     {
         while (!gameOver)
         {
+            var itemScaleX = Random.Range(0, 2);
             var positionHorizontal = Random.Range(-horizontal,horizontal + 1);
             var positionVertical = Random.Range(-vertical, vertical + 1);
             if (positionHorizontal <= -35 && positionVertical >= 50) continue;
@@ -37,6 +36,10 @@ public class ItemSpawn : MonoBehaviour
             if (!(Vector3.Distance(playerPosition, position) > minDistanceToSpawnItem)) continue;
             var selectedPrefab = GetRandomItemPrefab();
             var gameObject = Instantiate(selectedPrefab, position,Quaternion.identity);
+            if (itemScaleX == 0)
+            {
+                gameObject.transform.localScale = new Vector3(-1, 1,0);
+            }
             yield return new WaitForSeconds(secondsToSpawn);
             Destroy(gameObject, lifeTime);
         }

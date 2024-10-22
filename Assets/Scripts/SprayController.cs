@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector2 = System.Numerics.Vector2;
 
 public class SprayController : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class SprayController : MonoBehaviour
     private void Start()
     {
         GameEvents.Instance.OnGameOver += GameOver;
-        var itemScaleX = Random.Range(-1, 1);
     }
 
     private void OnDestroy()
@@ -31,7 +31,6 @@ public class SprayController : MonoBehaviour
         {
             sprayScale.x += Time.deltaTime * spraySpeed; 
             sprayScale.y += Time.deltaTime * spraySpeed; 
-            print(sprayScale);
             spray.transform.localScale = sprayScale;
             
         }
