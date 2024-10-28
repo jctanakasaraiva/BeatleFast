@@ -37,8 +37,8 @@ public class ItemSpawn : MonoBehaviour
             var selectedPrefab = GetRandomItemPrefab();
             var gameObject = Instantiate(selectedPrefab, position,Quaternion.identity);
             if (itemScaleX == 0)
-            {
-                gameObject.transform.localScale = new Vector3(-1, 1,0);
+            { 
+                gameObject.transform.eulerAngles = new Vector3(0,180,0);
             }
             yield return new WaitForSeconds(secondsToSpawn);
             Destroy(gameObject, lifeTime);
