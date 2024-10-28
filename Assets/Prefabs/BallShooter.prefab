@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 1659887459627190596, guid: 3394944e9d24f2a4abf94f2c9e8c301e, type: 3}
   minTimeToShoot: 1
   maxTimeToShoot: 8
-  _animator: {fileID: 4632913992683896073}
+  animator: {fileID: 4632913992683896073}
 --- !u!212 &5756663075217707740
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -161,6 +161,7 @@ EdgeCollider2D:
   m_Points:
   - {x: 4.234704, y: -3.5610433}
   - {x: -3.863947, y: -3.676183}
+  - {x: -4.9776473, y: -3.1249197}
   - {x: -5.500682, y: -2.213386}
   - {x: -5.5940084, y: 2.1150618}
   - {x: -4.827165, y: 3.2088532}

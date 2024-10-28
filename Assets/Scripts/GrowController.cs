@@ -37,7 +37,10 @@ public class GrowController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        triggerActive = true;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            triggerActive = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

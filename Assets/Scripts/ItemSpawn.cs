@@ -36,10 +36,13 @@ public class ItemSpawn : MonoBehaviour
             if (!(Vector3.Distance(playerPosition, position) > minDistanceToSpawnItem)) continue;
             var selectedPrefab = GetRandomItemPrefab();
             var gameObject = Instantiate(selectedPrefab, position,Quaternion.identity);
+            gameObject.transform.eulerAngles = new Vector3(0,0 ,Random.Range(0, 360));
+            /*
             if (itemScaleX == 0)
             { 
                 gameObject.transform.eulerAngles = new Vector3(0,180,0);
             }
+            */
             yield return new WaitForSeconds(secondsToSpawn);
             Destroy(gameObject, lifeTime);
         }

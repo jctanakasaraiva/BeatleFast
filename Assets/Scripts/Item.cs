@@ -33,10 +33,14 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _audioSource.pitch = 1;
-        _audioSource.PlayOneShot(destroyClip);
-        GameEvents.Instance.ItemCollide(ItemScoreValue, ItemSpeedValue);
-        _spriteRenderer.enabled = false;
-        Destroy(gameObject,1f);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _audioSource.pitch = 1;
+            _audioSource.PlayOneShot(destroyClip);
+            GameEvents.Instance.ItemCollide(ItemScoreValue, ItemSpeedValue);
+            _spriteRenderer.enabled = false;
+            Destroy(gameObject,1f);    
+        }
+        
     }
 }
