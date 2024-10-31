@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class GameEvents : MonoBehaviour
@@ -27,6 +28,9 @@ public class GameEvents : MonoBehaviour
 
     public event Action<Vector3> OnPlayerMove;
     public void PlayerMove(Vector3 playerPosition) => OnPlayerMove?.Invoke(playerPosition);
+
+    public event Action<float> OnUpdateTurboSpeed;
+    public void UpdateTurboSpeed(float speedValue) => OnUpdateTurboSpeed?.Invoke(speedValue);
 
 
 

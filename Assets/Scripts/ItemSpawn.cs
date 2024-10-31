@@ -28,7 +28,7 @@ public class ItemSpawn : MonoBehaviour
     {
         while (!gameOver)
         {
-            var itemScaleX = Random.Range(0, 2);
+            //var itemScaleX = Random.Range(0, 2);
             var positionHorizontal = Random.Range(-horizontal,horizontal + 1);
             var positionVertical = Random.Range(-vertical, vertical + 1);
             if (positionHorizontal <= -35 && positionVertical >= 50) continue;
