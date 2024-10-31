@@ -14,7 +14,8 @@ public class Player2 : MonoBehaviour
     private Vector2 direction;
     private bool gameOver;
     
-    private float turboBar = 100;
+    private float turboBarValue = 100;
+    private bool turboActive = false;
 
 
     private void Awake()
@@ -38,28 +39,38 @@ public class Player2 : MonoBehaviour
         if (gameOver) return;
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
-        var turboActive = Input.GetAxis("ZR");
+        if (Input.GetAxis("ZR") == 1)
+        {
+            turboActive = true ;
+        }
+        else
+        {
+            turboActive = false;
+        }
+        
         float finalSpeed;
         
         var inputMagnitude = Mathf.Clamp01(direction.magnitude);
         direction.Normalize();
 
-        if (turboActive == 1 && turboBar > 0)
+        if (turboActive && turboBarValue > 0)
         {
             finalSpeed = moveSpeed + turboSpeed;
-            turboBar -= turboDecreaseRate * Time.deltaTime;
+            turboBarValue -= turboDecreaseRate * Time.deltaTime;
+            GameEvents.Instance.UpdateTurboSpeed(turboBarValue);
         }
         else
         {
             finalSpeed = moveSpeed;
+            GameEvents.Instance.UpdateTurboSpeed(turboBarValue);
         }
 
-        if (turboActive == 0 && turboBar <= 100)
+        if (!turboActive && turboBarValue <= 100)
         {
-            turboBar += turboDecreaseRate * Time.deltaTime;
+            turboBarValue += (turboDecreaseRate/2) * Time.deltaTime;
         }
 
-        print(turboBar);
+        print(turboBarValue);
         
         transform.Translate(direction * (finalSpeed * inputMagnitude * Time.deltaTime), Space.World);
 
