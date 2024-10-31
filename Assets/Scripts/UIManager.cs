@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI speedText;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject newGameScreen;
 
@@ -18,7 +19,8 @@ public class UIManager : MonoBehaviour
     
     private void UpdateScreen(int score, float speed)
     {
-        scoreText.text = "Score: " + score.ToString() + "\t\tSpeed: " + speed.ToString();
+        scoreText.text = "Score: " + score.ToString();
+        speedText.text = "Speed: " + speed.ToString();
     }
 
     private void ShowGameOverScreen(bool gameStatus)
