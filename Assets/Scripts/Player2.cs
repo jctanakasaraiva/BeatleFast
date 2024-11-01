@@ -27,7 +27,8 @@ public class Player2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        #region Gamepad test
+        /*
         foreach (KeyCode vKey in System.Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKey(vKey))
@@ -35,11 +36,15 @@ public class Player2 : MonoBehaviour
                 print(vKey);
             }
         }
+        */
+
+        #endregion
+        
 
         if (gameOver) return;
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
-        if (Input.GetAxis("ZR") == 1)
+        if (Input.GetAxis("ZR") == 1 || Input.GetKey(KeyCode.Space))
         {
             turboActive = true ;
         }
@@ -69,8 +74,6 @@ public class Player2 : MonoBehaviour
         {
             turboBarValue += (turboDecreaseRate/2) * Time.deltaTime;
         }
-
-        print(turboBarValue);
         
         transform.Translate(direction * (finalSpeed * inputMagnitude * Time.deltaTime), Space.World);
 

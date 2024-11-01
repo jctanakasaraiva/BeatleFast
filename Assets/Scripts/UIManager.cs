@@ -7,14 +7,13 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI speedText;
-    [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private GameObject newGameScreen;
-
+    [SerializeField] private GameObject inGameHud;
+    
     private void Start()
     {
         GameEvents.Instance.OnScreenUpdate += UpdateScreen;
-        GameEvents.Instance.OnGameOver += ShowGameOverScreen;
-        ShowNewGameScreen();
+        GameEvents.Instance.OnStartGame += ShowInGameHud;
+        GameEvents.Instance.OnGameOver += HideInGameHud;
     }
     
     private void UpdateScreen(int score, float speed)
@@ -23,13 +22,14 @@ public class UIManager : MonoBehaviour
         speedText.text = "Speed: " + speed.ToString();
     }
 
-    private void ShowGameOverScreen(bool gameStatus)
+    private void ShowInGameHud()
     {
-        Instantiate(gameOverScreen, Vector3.zero, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+        inGameHud.SetActive(true);
     }
-
-    private void ShowNewGameScreen()
+    
+    private void HideInGameHud(bool other)
     {
-        Instantiate(newGameScreen, Vector3.zero, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+        inGameHud.SetActive(false);
     }
+    
 }
