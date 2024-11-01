@@ -69,8 +69,6 @@ public class Player2 : MonoBehaviour
         {
             turboBarValue += (turboDecreaseRate/2) * Time.deltaTime;
         }
-
-        print(turboBarValue);
         
         transform.Translate(direction * (finalSpeed * inputMagnitude * Time.deltaTime), Space.World);
 
