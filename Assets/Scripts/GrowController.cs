@@ -41,6 +41,7 @@ public class GrowController : MonoBehaviour
         {
             triggerActive = true;
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)

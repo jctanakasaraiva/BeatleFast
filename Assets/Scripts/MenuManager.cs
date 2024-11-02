@@ -10,8 +10,8 @@ public class MenuManager : MonoBehaviour
 {
     [Header("Menu Objects")]
     [SerializeField] private GameObject _mainMenuCanvas;
+    [SerializeField] private GameObject _pauseMenuCanvas;
     [SerializeField] private GameObject _settingsMenuCanvas;
-    [SerializeField] private GameObject _newGameMenuCanvas;
     [SerializeField] private GameObject _gameOverMenuCanvas;
     [SerializeField] private GameObject _creditMenuCanvas;
     [SerializeField] private GameObject _gamePadMenuCanvas;
@@ -19,8 +19,8 @@ public class MenuManager : MonoBehaviour
 
     [Header("First Selected Options")]
     [SerializeField] private GameObject _mainMenuFirst;
+    [SerializeField] private GameObject _pauseMenuFirst;
     [SerializeField] private GameObject _settingsMenuFirst;
-    [SerializeField] private GameObject _newGameMenuFirst;
     [SerializeField] private GameObject _gameOverMenuFirst;
     [SerializeField] private GameObject _creditMenuFirst;
     [SerializeField] private GameObject _gamePadMenuFirst;
@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
     {
         GameEvents.Instance.GameOver(true);
         CloseAllMenus();
-        OpenNewGameMenu();
+        OpenMainMenu();
         GameEvents.Instance.OnGameOver += OpenGameOverMenu;
     }
 
@@ -62,7 +62,7 @@ public class MenuManager : MonoBehaviour
     {
         isPaused = true;
         Time.timeScale = 0f;
-        OpenMainMenu();
+        OpenPauseMenu();
     }
 
     public void Unpause()
@@ -81,7 +81,7 @@ public class MenuManager : MonoBehaviour
     {
         _mainMenuCanvas.SetActive(false);
         _settingsMenuCanvas.SetActive(false);
-        _newGameMenuCanvas.SetActive(false);
+        _pauseMenuCanvas.SetActive(false);
         _gameOverMenuCanvas.SetActive(false);
         _creditMenuCanvas.SetActive(false);
         _gamePadMenuCanvas.SetActive(false);
@@ -90,13 +90,13 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    private void OpenNewGameMenu()
+    private void OpenMainMenu()
     {
         isGameStarted = false;
         CloseAllMenus();
-        _newGameMenuCanvas.SetActive(true);
+        _mainMenuCanvas.SetActive(true);
         
-        EventSystem.current.SetSelectedGameObject(_newGameMenuFirst);
+        EventSystem.current.SetSelectedGameObject(_mainMenuFirst);
     }
 
     private void OpenGameOverMenu(bool gameOverStatus)
@@ -109,12 +109,12 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_gameOverMenuFirst);
     }
 
-    private void OpenMainMenu()
+    private void OpenPauseMenu()
     {
         CloseAllMenus();
-        _mainMenuCanvas.SetActive(true);
+        _pauseMenuCanvas.SetActive(true);
         
-        EventSystem.current.SetSelectedGameObject(_mainMenuFirst);
+        EventSystem.current.SetSelectedGameObject(_pauseMenuFirst);
     }
 
     private void OpenSettingsMenu()
@@ -172,7 +172,7 @@ public class MenuManager : MonoBehaviour
 
     #region Settings Menu Button Actions
 
-    public void GoToMainMenu()
+    public void GoToPauseMenu()
     {
         if (isGameOver)
         {
@@ -180,7 +180,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            OpenMainMenu();
+            OpenPauseMenu();
         }
     }
 
@@ -214,8 +214,8 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
 
-    public void GoToNewGameMenu()
+    public void GoToMainMenu()
     {
-        OpenNewGameMenu();
+        OpenMainMenu();
     }
 }

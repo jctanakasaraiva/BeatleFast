@@ -178,16 +178,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecab20655d3a8b14f958a8ce7dcebcc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenuCanvas: {fileID: 214250683}
+  _mainMenuCanvas: {fileID: 218452389}
+  _pauseMenuCanvas: {fileID: 214250683}
   _settingsMenuCanvas: {fileID: 613400065}
-  _newGameMenuCanvas: {fileID: 218452389}
   _gameOverMenuCanvas: {fileID: 507000460}
   _creditMenuCanvas: {fileID: 374040502}
   _gamePadMenuCanvas: {fileID: 617548161}
   _keyboardMenuCanvas: {fileID: 1354399963}
-  _mainMenuFirst: {fileID: 129300188}
+  _mainMenuFirst: {fileID: 801957169}
+  _pauseMenuFirst: {fileID: 129300188}
   _settingsMenuFirst: {fileID: 1591342401}
-  _newGameMenuFirst: {fileID: 801957169}
   _gameOverMenuFirst: {fileID: 58125075}
   _creditMenuFirst: {fileID: 788158407}
   _gamePadMenuFirst: {fileID: 359076575}
@@ -945,7 +945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 214250684}
   m_Layer: 5
-  m_Name: MainMenuCanvas
+  m_Name: PauseMenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -985,7 +985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218452390}
   m_Layer: 5
-  m_Name: NewGameMenuCanvas
+  m_Name: MainMenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3110,7 +3110,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 28231069}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: GoToNewGameMenu
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6116,7 +6116,7 @@ MonoBehaviour:
     chance: 30
     prefab: {fileID: 6348645396346291020, guid: 02a16bbf9e7a0ec47bf0b8fc808411d1, type: 3}
   - itemName: SprayBottle
-    chance: 30
+    chance: 70
     prefab: {fileID: 6195175555081632492, guid: 7f5ef53b2a5c37b40b7776407053790c, type: 3}
   - itemName: Shooter
     chance: 70
@@ -7433,7 +7433,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 28231069}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: GoToMainMenu
+        m_MethodName: GoToPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
