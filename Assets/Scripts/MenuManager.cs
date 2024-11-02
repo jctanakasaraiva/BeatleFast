@@ -97,7 +97,6 @@ public class MenuManager : MonoBehaviour
         _newGameMenuCanvas.SetActive(true);
         
         EventSystem.current.SetSelectedGameObject(_newGameMenuFirst);
-            
     }
 
     private void OpenGameOverMenu(bool gameOverStatus)

@@ -11,6 +11,8 @@ public class Player2 : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip walk;
     [SerializeField] private Animator animator;
+    [SerializeField] private TrailRenderer _trailRenderer;
+    
     private Vector2 direction;
     private bool gameOver;
     
@@ -47,10 +49,12 @@ public class Player2 : MonoBehaviour
         if (Input.GetAxis("ZR") == 1 || Input.GetKey(KeyCode.Space))
         {
             turboActive = true ;
+            _trailRenderer.emitting = true;
         }
         else
         {
             turboActive = false;
+            _trailRenderer.emitting = false;
         }
         
         float finalSpeed;
