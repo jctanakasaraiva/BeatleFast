@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _creditMenuCanvas;
     [SerializeField] private GameObject _gamePadMenuCanvas;
     [SerializeField] private GameObject _keyboardMenuCanvas;
+    [SerializeField] private GameObject _audioMenuCanvas;
 
     [Header("First Selected Options")]
     [SerializeField] private GameObject _mainMenuFirst;
@@ -25,6 +26,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _creditMenuFirst;
     [SerializeField] private GameObject _gamePadMenuFirst;
     [SerializeField] private GameObject _keyboardMenuFirst;
+    [SerializeField] private GameObject _audioMenuFirst;
     
     private bool isPaused;
     private bool isGameStarted;
@@ -86,6 +88,7 @@ public class MenuManager : MonoBehaviour
         _creditMenuCanvas.SetActive(false);
         _gamePadMenuCanvas.SetActive(false);
         _keyboardMenuCanvas.SetActive(false);
+        _audioMenuCanvas.SetActive(false);
         
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -147,6 +150,14 @@ public class MenuManager : MonoBehaviour
         
         EventSystem.current.SetSelectedGameObject(_keyboardMenuFirst);
     }
+
+    private void OpenAudioMenu()
+    {
+        CloseAllMenus();
+        _audioMenuCanvas.SetActive(true);
+        
+        EventSystem.current.SetSelectedGameObject(_audioMenuFirst);
+    }
     
     #endregion
 
@@ -182,6 +193,11 @@ public class MenuManager : MonoBehaviour
         {
             OpenPauseMenu();
         }
+    }
+
+    public void GoToAudioMenu()
+    {
+        OpenAudioMenu();
     }
 
     #endregion

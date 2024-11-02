@@ -64,12 +64,14 @@ public class Player2 : MonoBehaviour
 
         if (turboActive && turboBarValue > 0)
         {
+            _audioSource.pitch = 2;
             finalSpeed = moveSpeed + turboSpeed;
             turboBarValue -= turboDecreaseRate * Time.deltaTime;
             GameEvents.Instance.UpdateTurboSpeed(turboBarValue);
         }
         else
         {
+            _audioSource.pitch = 1;
             finalSpeed = moveSpeed;
             GameEvents.Instance.UpdateTurboSpeed(turboBarValue);
         }
@@ -83,6 +85,10 @@ public class Player2 : MonoBehaviour
 
         if (direction != Vector2.zero)
         {
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.Play();
+            }
             animator.SetBool("walking", true);
             var toRotation = Quaternion.LookRotation(Vector3.forward, direction);
             transform.rotation =
@@ -90,6 +96,7 @@ public class Player2 : MonoBehaviour
         }
         else
         {
+            _audioSource.Stop();
             animator.SetBool("walking", false);
         }
             
