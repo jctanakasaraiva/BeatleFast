@@ -8,7 +8,7 @@ public class Item : MonoBehaviour
     [SerializeField] private int ItemScoreValue;
     [SerializeField] private float ItemSpeedValue;
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip spawnClip, destroyClip;
+    [SerializeField] private AudioClip spawnClip;
     [SerializeField] private float audioSourcePitch;
     
     private SpriteRenderer _spriteRenderer;
@@ -35,8 +35,6 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _audioSource.pitch = 1;
-            _audioSource.PlayOneShot(destroyClip);
             GameEvents.Instance.ItemCollide(ItemScoreValue, ItemSpeedValue);
             _spriteRenderer.enabled = false;
             Destroy(gameObject,1f);    

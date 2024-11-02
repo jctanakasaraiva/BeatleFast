@@ -9,6 +9,7 @@ public class Player2 : MonoBehaviour
     [SerializeField] private float turboSpeed;
     [SerializeField] private float turboDecreaseRate;
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _biteAudioSource;
     [SerializeField] private AudioClip walk;
     [SerializeField] private Animator animator;
     [SerializeField] private TrailRenderer _trailRenderer;
@@ -110,9 +111,14 @@ public class Player2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Border" || collider.gameObject.tag == "Enemy")
+        if (collider.CompareTag("Border") || collider.CompareTag("Enemy"))
         {
             GameOver();
+        }
+
+        if (collider.CompareTag("Item"))
+        {
+            _biteAudioSource.Play();
         }
     }
 
