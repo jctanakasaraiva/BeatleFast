@@ -5,7 +5,11 @@ using UnityEngine.UI;
 public class BarControl : MonoBehaviour
 {
     [SerializeField] private Slider slider;
+    [SerializeField] private float blinkTime;
+    [SerializeField] private int valueTostartBlink;
+    [SerializeField] private int valueToStopBlink;
     [SerializeField] private GameObject icon;
+    [SerializeField] private AudioSource _audioSource;
     
     private bool _isBlinking;
 
@@ -16,13 +20,13 @@ public class BarControl : MonoBehaviour
 
     private void Update()
     {
-        if (slider.value < 10 && !_isBlinking)
+        if (slider.value < valueTostartBlink && !_isBlinking)
         {
             _isBlinking = true;
             StartCoroutine(Blink());
         }
         
-        if(slider.value > 60 && _isBlinking)
+        if(slider.value > valueToStopBlink && _isBlinking)
         {
             StopCoroutine(Blink());
             _isBlinking = false;
@@ -44,9 +48,10 @@ public class BarControl : MonoBehaviour
         while (_isBlinking)
         {
             icon.SetActive(false);
-            yield return new WaitForSeconds(0.1f);
+            _audioSource.Play();
+            yield return new WaitForSeconds(blinkTime);
             icon.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(blinkTime);
         }
         
     }
