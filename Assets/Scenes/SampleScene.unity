@@ -6113,10 +6113,10 @@ MonoBehaviour:
     chance: 0.1
     prefab: {fileID: 7218465843421195723, guid: 15d97228f0a6f6c48b258894280f0e4c, type: 3}
   - itemName: SpineBall
-    chance: 30
+    chance: 70
     prefab: {fileID: 6348645396346291020, guid: 02a16bbf9e7a0ec47bf0b8fc808411d1, type: 3}
   - itemName: SprayBottle
-    chance: 70
+    chance: 30
     prefab: {fileID: 6195175555081632492, guid: 7f5ef53b2a5c37b40b7776407053790c, type: 3}
   - itemName: Shooter
     chance: 70
