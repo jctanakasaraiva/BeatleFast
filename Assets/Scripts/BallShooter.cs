@@ -10,6 +10,7 @@ public class BallShooter : MonoBehaviour
     [SerializeField] private float minTimeToShoot;
     [SerializeField] private float maxTimeToShoot;
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource _audioSource;
     private static readonly int Shooting = Animator.StringToHash("Shooting");
 
     private void Start()
@@ -22,6 +23,7 @@ public class BallShooter : MonoBehaviour
     {
         while (true)
         {
+            _audioSource.Play();
             animator.SetBool(Shooting, true);
             var transform1 = transform;
             Instantiate(ballPrefab, transform1.position, transform1.rotation);
