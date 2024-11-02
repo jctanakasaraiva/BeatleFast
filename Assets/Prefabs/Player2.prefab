@@ -53,9 +53,8 @@ MonoBehaviour:
   rotationSpeed: 720
   turboSpeed: 30
   turboDecreaseRate: 50
-  _audioSource: {fileID: -1911844317124740722}
+  _walkAudioSource: {fileID: -1911844317124740722}
   _biteAudioSource: {fileID: -7656844487106758616}
-  walk: {fileID: 8300000, guid: 020243fff4fbf8a4fbe718118f2979d6, type: 3}
   animator: {fileID: 5881146756168275479}
   _trailRenderer: {fileID: 8513217151738057505}
 --- !u!50 &4727098248514334979

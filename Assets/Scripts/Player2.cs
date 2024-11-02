@@ -8,9 +8,8 @@ public class Player2 : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float turboSpeed;
     [SerializeField] private float turboDecreaseRate;
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _walkAudioSource;
     [SerializeField] private AudioSource _biteAudioSource;
-    [SerializeField] private AudioClip walk;
     [SerializeField] private Animator animator;
     [SerializeField] private TrailRenderer _trailRenderer;
     
@@ -65,14 +64,14 @@ public class Player2 : MonoBehaviour
 
         if (turboActive && turboBarValue > 0)
         {
-            _audioSource.pitch = 2;
+            _walkAudioSource.pitch = 2;
             finalSpeed = moveSpeed + turboSpeed;
             turboBarValue -= turboDecreaseRate * Time.deltaTime;
             GameEvents.Instance.UpdateTurboSpeed(turboBarValue);
         }
         else
         {
-            _audioSource.pitch = 1;
+            _walkAudioSource.pitch = 1;
             finalSpeed = moveSpeed;
             GameEvents.Instance.UpdateTurboSpeed(turboBarValue);
         }
@@ -86,9 +85,9 @@ public class Player2 : MonoBehaviour
 
         if (direction != Vector2.zero)
         {
-            if (!_audioSource.isPlaying)
+            if (!_walkAudioSource.isPlaying)
             {
-                _audioSource.Play();
+                _walkAudioSource.Play();
             }
             animator.SetBool("walking", true);
             var toRotation = Quaternion.LookRotation(Vector3.forward, direction);
@@ -97,7 +96,7 @@ public class Player2 : MonoBehaviour
         }
         else
         {
-            _audioSource.Stop();
+            _walkAudioSource.Stop();
             animator.SetBool("walking", false);
         }
             

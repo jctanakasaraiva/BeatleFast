@@ -33,7 +33,6 @@ public class MenuManager : MonoBehaviour
     private bool isGameOver;
     private void Start()
     {
-        GameEvents.Instance.GameOver(true);
         CloseAllMenus();
         OpenMainMenu();
         GameEvents.Instance.OnGameOver += OpenGameOverMenu;
