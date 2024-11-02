@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     private void UpdateScreen(int score, float speed)
     {
         scoreText.text = "Score: " + score.ToString();
-        speedText.text = "Speed: " + speed.ToString();
+        speedText.text = "Speed: " + speed.ToString("f1");
     }
 
     private void ShowInGameHud()
