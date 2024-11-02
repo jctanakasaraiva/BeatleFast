@@ -77,6 +77,7 @@ public class ItemSpawn : MonoBehaviour
     private void GameOver(bool gameOverStatus)
     {
         gameOver = gameOverStatus;
+        StopAllCoroutines();
     }
 
     private void StartGame()
