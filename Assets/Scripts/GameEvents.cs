@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameEvents : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class GameEvents : MonoBehaviour
     public event Action<float> OnUpdateTurboSpeed;
     public void UpdateTurboSpeed(float speedValue) => OnUpdateTurboSpeed?.Invoke(speedValue);
 
+    public event Action<bool, bool> OnNewRecord;
+    public void ShowNewRecord(bool scoreRecord, bool speedRecord) => OnNewRecord?.Invoke(scoreRecord, speedRecord);
 
 
 }

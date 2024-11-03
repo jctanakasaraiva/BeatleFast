@@ -19,7 +19,6 @@ public class Player2 : MonoBehaviour
     private float turboBarValue = 100;
     private bool turboActive = false;
 
-
     private void Awake()
     {
         GameEvents.Instance.OnItemCollide += updateSpeed;
@@ -85,6 +84,7 @@ public class Player2 : MonoBehaviour
 
         if (direction != Vector2.zero)
         {
+            GameEvents.Instance.PlayerMove(transform.position);
             if (!_walkAudioSource.isPlaying)
             {
                 _walkAudioSource.Play();

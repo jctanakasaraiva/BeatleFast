@@ -28,7 +28,6 @@ public class ItemSpawn : MonoBehaviour
     {
         while (!gameOver)
         {
-            //var itemScaleX = Random.Range(0, 2);
             var positionHorizontal = Random.Range(-horizontal,horizontal + 1);
             var positionVertical = Random.Range(-vertical, vertical - 5);
             var position = new Vector3(positionHorizontal, positionVertical);
@@ -36,12 +35,6 @@ public class ItemSpawn : MonoBehaviour
             var selectedPrefab = GetRandomItemPrefab();
             var gameObject = Instantiate(selectedPrefab, position,Quaternion.identity);
             gameObject.transform.eulerAngles = new Vector3(0,0 ,Random.Range(0, 360));
-            /*
-            if (itemScaleX == 0)
-            { 
-                gameObject.transform.eulerAngles = new Vector3(0,180,0);
-            }
-            */
             yield return new WaitForSeconds(secondsToSpawn);
             Destroy(gameObject, lifeTime);
         }

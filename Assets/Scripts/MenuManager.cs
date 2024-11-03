@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _gamePadMenuCanvas;
     [SerializeField] private GameObject _keyboardMenuCanvas;
     [SerializeField] private GameObject _audioMenuCanvas;
+    [SerializeField] private GameObject _newRecordMenuCanvas;
 
     [Header("First Selected Options")]
     [SerializeField] private GameObject _mainMenuFirst;
@@ -27,6 +29,16 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _gamePadMenuFirst;
     [SerializeField] private GameObject _keyboardMenuFirst;
     [SerializeField] private GameObject _audioMenuFirst;
+    [SerializeField] private GameObject _newRecordMenuFirst;
+
+    [Header("New Record Menu Options")] 
+    [SerializeField] private TextMeshProUGUI recordText;
+
+    [Header("Game Over Record Frame")] 
+    [SerializeField] private TextMeshProUGUI recordFrameText;
+
+    private int scoreRecord;
+    private float SpeedRecord;
     
     private bool isPaused;
     private bool isGameStarted;
@@ -36,6 +48,7 @@ public class MenuManager : MonoBehaviour
         CloseAllMenus();
         OpenMainMenu();
         GameEvents.Instance.OnGameOver += OpenGameOverMenu;
+        GameEvents.Instance.OnNewRecord += OpenNewRecordMenu;
     }
 
     private void Update()
@@ -88,6 +101,7 @@ public class MenuManager : MonoBehaviour
         _gamePadMenuCanvas.SetActive(false);
         _keyboardMenuCanvas.SetActive(false);
         _audioMenuCanvas.SetActive(false);
+        _newRecordMenuCanvas.SetActive(false);
         
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -111,8 +125,36 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_gameOverMenuFirst);
     }
 
+    private void OpenNewRecordMenu(bool isScoreRecord, bool isSpeedRecord)
+    {
+        CloseAllMenus();
+        _newRecordMenuCanvas.SetActive(true);
+        
+        EventSystem.current.SetSelectedGameObject(_newRecordMenuFirst);
+        int scoreRecord = PlayerPrefs.GetInt("score");
+        float SpeedRecord = PlayerPrefs.GetFloat("speed");
+        //recordText.text = "Score: " + scoreRecord + "\nSpeed: " + SpeedRecord ;
+        
+        if (isScoreRecord && isSpeedRecord)
+        {
+            recordText.text = "Score: " + scoreRecord + "\nSpeed: " + SpeedRecord.ToString("f1") ;
+        }
+        else if (isScoreRecord || !isSpeedRecord)
+        {
+            recordText.text = "Score: " + scoreRecord;
+        }
+        else if (!isScoreRecord || isSpeedRecord)
+        {
+            recordText.text = "Speed: " + SpeedRecord.ToString("f1") ;
+        }
+        
+    }
+
     private void OpenPauseMenu()
     {
+        scoreRecord = PlayerPrefs.GetInt("score");
+        SpeedRecord = PlayerPrefs.GetFloat("speed");
+        recordFrameText.text = "Score: " + scoreRecord + "\nSpeed: " + SpeedRecord;
         CloseAllMenus();
         _pauseMenuCanvas.SetActive(true);
         
@@ -232,5 +274,13 @@ public class MenuManager : MonoBehaviour
     public void GoToMainMenu()
     {
         OpenMainMenu();
+    }
+
+    public void ClearRecords()
+    {
+        PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.SetFloat("speed", 0);
+        recordFrameText.text = "Score: " + scoreRecord + "\nSpeed: " + SpeedRecord;
+        recordFrameText.GraphicUpdateComplete();
     }
 }
