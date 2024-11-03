@@ -19,6 +19,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _keyboardMenuCanvas;
     [SerializeField] private GameObject _audioMenuCanvas;
     [SerializeField] private GameObject _newRecordMenuCanvas;
+    [SerializeField] private GameObject _leaderboardMenuCanvas;
 
     [Header("First Selected Options")]
     [SerializeField] private GameObject _mainMenuFirst;
@@ -30,15 +31,20 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _keyboardMenuFirst;
     [SerializeField] private GameObject _audioMenuFirst;
     [SerializeField] private GameObject _newRecordMenuFirst;
+    [SerializeField] private GameObject _leaderboardMenuFirst;
 
     [Header("New Record Menu Options")] 
     [SerializeField] private TextMeshProUGUI recordText;
+    [SerializeField] private TextMeshProUGUI playerNameText;
 
     [Header("Game Over Record Frame")] 
     [SerializeField] private TextMeshProUGUI recordFrameText;
 
     private int scoreRecord;
     private float SpeedRecord;
+    private float timeRecord;
+
+    private bool scoreIsRecord, speedIsRecord, timeIsRecord;
     
     private bool isPaused;
     private bool isGameStarted;
@@ -102,6 +108,7 @@ public class MenuManager : MonoBehaviour
         _keyboardMenuCanvas.SetActive(false);
         _audioMenuCanvas.SetActive(false);
         _newRecordMenuCanvas.SetActive(false);
+        _leaderboardMenuCanvas.SetActive(false);
         
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -125,36 +132,54 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(_gameOverMenuFirst);
     }
 
-    private void OpenNewRecordMenu(bool isScoreRecord, bool isSpeedRecord)
+    private void OpenNewRecordMenu(bool isScoreRecord, bool isSpeedRecord, bool isTimeRecord)
     {
         CloseAllMenus();
         _newRecordMenuCanvas.SetActive(true);
         
         EventSystem.current.SetSelectedGameObject(_newRecordMenuFirst);
+
+        scoreIsRecord = isScoreRecord;
+        speedIsRecord = isSpeedRecord;
+        timeIsRecord = isTimeRecord;
         int scoreRecord = PlayerPrefs.GetInt("score");
         float SpeedRecord = PlayerPrefs.GetFloat("speed");
+        float TimeRecord = PlayerPrefs.GetFloat("time");
+        TimeSpan time = TimeSpan.FromSeconds(TimeRecord);
         //recordText.text = "Score: " + scoreRecord + "\nSpeed: " + SpeedRecord ;
         
-        if (isScoreRecord && isSpeedRecord)
+        if (isScoreRecord && isSpeedRecord && isTimeRecord)
         {
-            recordText.text = "Score: " + scoreRecord + "\nSpeed: " + SpeedRecord.ToString("f1") ;
+            recordText.text = "Score: " + scoreRecord + 
+                              "\nSpeed: " + SpeedRecord.ToString("f1") +
+                              "\nTime: " + time.ToString(@"mm\:ss\:fff");
         }
-        else if (isScoreRecord || !isSpeedRecord)
+        else if (isScoreRecord && !isSpeedRecord && !isTimeRecord )
         {
             recordText.text = "Score: " + scoreRecord;
         }
-        else if (!isScoreRecord || isSpeedRecord)
+        else if (!isScoreRecord && isSpeedRecord && !isTimeRecord )
         {
-            recordText.text = "Speed: " + SpeedRecord.ToString("f1") ;
+            recordText.text = "Speed: " + SpeedRecord.ToString("f1");
         }
-        
+        else if (!isScoreRecord && !isSpeedRecord && isTimeRecord )
+        {
+            recordText.text = "Time: " + time.ToString(@"mm\:ss\:fff");
+        }
+
     }
 
     private void OpenPauseMenu()
     {
         scoreRecord = PlayerPrefs.GetInt("score");
         SpeedRecord = PlayerPrefs.GetFloat("speed");
-        recordFrameText.text = "Score: " + scoreRecord + "\nSpeed: " + SpeedRecord;
+        timeRecord = PlayerPrefs.GetFloat("player");
+        var playerScore = PlayerPrefs.GetString("playerScore");
+        var playerSpeed = PlayerPrefs.GetString("playerSpeed");
+        var playerTime = PlayerPrefs.GetString("playerTime");
+        recordFrameText.text = "Name: " + playerScore + "Score: " + scoreRecord + "\n" +
+                               "Name: " + playerSpeed + "Speed: " + SpeedRecord + "\n" +
+                               "Name: " + playerTime + "Time: " + timeRecord;
         CloseAllMenus();
         _pauseMenuCanvas.SetActive(true);
         
@@ -274,6 +299,23 @@ public class MenuManager : MonoBehaviour
     public void GoToMainMenu()
     {
         OpenMainMenu();
+    }
+
+    public void SaveNewRecord()
+    {
+        var playerName = playerNameText.text;
+        if (scoreIsRecord)
+        {
+            PlayerPrefs.SetString("playerScore", playerName);
+        }
+        if (speedIsRecord)
+        {
+            PlayerPrefs.SetString("playerSpeed", playerName);
+        }
+        if (timeIsRecord)
+        {
+            PlayerPrefs.SetString("playerTime", playerName);
+        }
     }
 
     public void ClearRecords()

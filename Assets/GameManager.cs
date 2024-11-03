@@ -1,31 +1,62 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject PlayerPrefab;
+    
+    private bool gameStarted;
+    
     private int playerScore;
     private float playerSpeed;
+    private float currentTime;
 
     private int scoreRecord;
     private float speedRecord;
-
+    private float timeRecord;
+    
     private void Start()
     {
         GameEvents.Instance.OnItemCollide += UpdateScore;
         GameEvents.Instance.OnStartGame += SummonerPlayer;
         GameEvents.Instance.OnStartGame += StartGame;
-        GameEvents.Instance.OnGameOver += CheckRecords;
+        GameEvents.Instance.OnGameOver += StopGame;
+    }
+
+    private void Update()
+    {
+        PlayTimer(gameStarted);
     }
 
     private void StartGame()
     {
+        gameStarted = true;
         playerScore = 0;
         playerSpeed = 0;
+        currentTime = 0;
         GameEvents.Instance.ScreenUpdate(playerScore, playerSpeed);
+    }
+
+    private void StopGame(bool gameOver)
+    {
+        gameStarted = false;
+        CheckRecords(gameOver);
+    }
+    
+    private void PlayTimer(bool start)
+    {
+        if (start)
+        {
+            currentTime += Time.deltaTime;
+        }
+        TimeSpan time = TimeSpan.FromSeconds(currentTime);
+        timerText.text = "Time: " + time.ToString(@"mm\:ss\:fff");
     }
 
     private void UpdateScore(int score, float speed)
@@ -44,8 +75,13 @@ public class GameManager : MonoBehaviour
     {
         bool isScoreRecord = false; 
         bool isSpeedRecord = false;
+        bool isTimeRecord = false;
         scoreRecord = PlayerPrefs.GetInt("score");
         speedRecord = PlayerPrefs.GetFloat("speed");
+        timeRecord = PlayerPrefs.GetFloat("time");
+
+        
+
         if (playerScore > scoreRecord)
         {
             PlayerPrefs.SetInt("score", playerScore);
@@ -57,10 +93,16 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("speed", playerSpeed);
             isSpeedRecord = true;
         }
-
-        if (isScoreRecord || isSpeedRecord)
+        
+        if (currentTime > timeRecord)
         {
-            GameEvents.Instance.ShowNewRecord(isScoreRecord, isSpeedRecord);
+            PlayerPrefs.SetFloat("time", timeRecord);
+            isTimeRecord = true;
+        }
+
+        if (isScoreRecord || isSpeedRecord || isTimeRecord)
+        {
+            GameEvents.Instance.ShowNewRecord(isScoreRecord, isSpeedRecord, isTimeRecord);
         }
     }
 }
