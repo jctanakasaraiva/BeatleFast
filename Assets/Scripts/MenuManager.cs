@@ -85,6 +85,7 @@ public class MenuManager : MonoBehaviour
     public void Pause()
     {
         isPaused = true;
+        GameEvents.Instance.GamePaused(isPaused);
         Time.timeScale = 0f;
         OpenPauseMenu();
     }
@@ -92,6 +93,7 @@ public class MenuManager : MonoBehaviour
     public void Unpause()
     {
         isPaused = false;
+        GameEvents.Instance.GamePaused(isPaused);
         Time.timeScale = 1f;
 
         CloseAllMenus();

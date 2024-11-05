@@ -36,5 +36,8 @@ public class GameEvents : MonoBehaviour
     public event Action<bool, bool, bool> OnNewRecord;
     public void ShowNewRecord(bool scoreRecord, bool speedRecord, bool timeRecord) => OnNewRecord?.Invoke(scoreRecord, speedRecord, timeRecord);
 
+    public event Action<bool> OnGamePaused;
+
+    public void GamePaused(bool isGamePaused) => OnGamePaused?.Invoke(isGamePaused);
 
 }
