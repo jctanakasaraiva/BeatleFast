@@ -79,9 +79,7 @@ public class GameManager : MonoBehaviour
         scoreRecord = PlayerPrefs.GetInt("score");
         speedRecord = PlayerPrefs.GetFloat("speed");
         timeRecord = PlayerPrefs.GetFloat("time");
-
         
-
         if (playerScore > scoreRecord)
         {
             PlayerPrefs.SetInt("score", playerScore);
@@ -96,12 +94,13 @@ public class GameManager : MonoBehaviour
         
         if (currentTime > timeRecord)
         {
-            PlayerPrefs.SetFloat("time", timeRecord);
+            PlayerPrefs.SetFloat("time", currentTime);
             isTimeRecord = true;
         }
 
         if (isScoreRecord || isSpeedRecord || isTimeRecord)
         {
+            print(currentTime + " - " + timeRecord);
             GameEvents.Instance.ShowNewRecord(isScoreRecord, isSpeedRecord, isTimeRecord);
         }
     }

@@ -37,9 +37,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI recordText;
     [SerializeField] private TextMeshProUGUI playerNameText;
 
-    [Header("Game Over Record Frame")] 
-    [SerializeField] private TextMeshProUGUI recordFrameText;
-
+    [Header("Leaderboard Menu Options")]
+    [SerializeField] private TextMeshProUGUI bestScoreText;
+    [SerializeField] private TextMeshProUGUI bestSpeedText;
+    [SerializeField] private TextMeshProUGUI bestTimeText;
+    
+    
+    
     private int scoreRecord;
     private float SpeedRecord;
     private float timeRecord;
@@ -142,6 +146,7 @@ public class MenuManager : MonoBehaviour
         scoreIsRecord = isScoreRecord;
         speedIsRecord = isSpeedRecord;
         timeIsRecord = isTimeRecord;
+        print(scoreIsRecord.ToString() + speedIsRecord + timeIsRecord);
         int scoreRecord = PlayerPrefs.GetInt("score");
         float SpeedRecord = PlayerPrefs.GetFloat("speed");
         float TimeRecord = PlayerPrefs.GetFloat("time");
@@ -174,12 +179,14 @@ public class MenuManager : MonoBehaviour
         scoreRecord = PlayerPrefs.GetInt("score");
         SpeedRecord = PlayerPrefs.GetFloat("speed");
         timeRecord = PlayerPrefs.GetFloat("player");
-        var playerScore = PlayerPrefs.GetString("playerScore");
-        var playerSpeed = PlayerPrefs.GetString("playerSpeed");
-        var playerTime = PlayerPrefs.GetString("playerTime");
+        var playerScore = PlayerPrefs.GetString("bestScorePlayerName");
+        var playerSpeed = PlayerPrefs.GetString("bestSpeedPlayerName");
+        var playerTime = PlayerPrefs.GetString("bestTimeplayerName");
+        /*
         recordFrameText.text = "Name: " + playerScore + "Score: " + scoreRecord + "\n" +
                                "Name: " + playerSpeed + "Speed: " + SpeedRecord + "\n" +
                                "Name: " + playerTime + "Time: " + timeRecord;
+                               */
         CloseAllMenus();
         _pauseMenuCanvas.SetActive(true);
         
@@ -223,6 +230,31 @@ public class MenuManager : MonoBehaviour
         _audioMenuCanvas.SetActive(true);
         
         EventSystem.current.SetSelectedGameObject(_audioMenuFirst);
+    }
+
+    private void OpenLeaderboardMenu()
+    {
+        CloseAllMenus();
+        _leaderboardMenuCanvas.SetActive(true);
+        
+        EventSystem.current.SetSelectedGameObject(_leaderboardMenuFirst);
+
+        var bestScore = PlayerPrefs.GetInt("score");
+        var bestSpeed = PlayerPrefs.GetFloat("speed");
+        var bestTime = PlayerPrefs.GetFloat("time");
+
+        var bestScorePlayerName = PlayerPrefs.GetString("bestScorePlayerName");
+        var bestSpeedPlayerName = PlayerPrefs.GetString("bestSpeedPlayerName");
+        var bestTimePlayerName = PlayerPrefs.GetString("bestTimePlayerName");
+        
+        TimeSpan time = TimeSpan.FromSeconds(bestTime);
+
+        bestScoreText.text = bestScorePlayerName + " - " + bestScore;
+        bestSpeedText.text = bestSpeedPlayerName + " - " + bestSpeed;
+        bestTimeText.text = bestTimePlayerName + " - " + time.ToString(@"mm\:ss\:fff");
+        
+
+
     }
     
     #endregion
@@ -301,28 +333,54 @@ public class MenuManager : MonoBehaviour
         OpenMainMenu();
     }
 
+    public void GoToLeaderboardMenu()
+    {
+        OpenLeaderboardMenu();
+    }
+
     public void SaveNewRecord()
     {
         var playerName = playerNameText.text;
         if (scoreIsRecord)
         {
-            PlayerPrefs.SetString("playerScore", playerName);
+            PlayerPrefs.SetString("bestScorePlayerName", playerName);
         }
         if (speedIsRecord)
         {
-            PlayerPrefs.SetString("playerSpeed", playerName);
+            PlayerPrefs.SetString("bestSpeedPlayerName", playerName);
         }
         if (timeIsRecord)
         {
-            PlayerPrefs.SetString("playerTime", playerName);
+            PlayerPrefs.SetString("bestTimePlayerName", playerName);
         }
+        GoToPauseMenu();
     }
 
     public void ClearRecords()
     {
         PlayerPrefs.SetInt("score", 0);
         PlayerPrefs.SetFloat("speed", 0);
-        recordFrameText.text = "Score: " + scoreRecord + "\nSpeed: " + SpeedRecord;
-        recordFrameText.GraphicUpdateComplete();
+        PlayerPrefs.SetFloat("time", 0);
+        PlayerPrefs.SetString("bestScorePlayerName", "Player");
+        PlayerPrefs.SetString("bestSpeedPlayerName", "Player");
+        PlayerPrefs.SetString("bestTimePlayerName", "Player");
+        CloseAllMenus();
+        OpenLeaderboardMenu();
     }
+
+    #region Leaderboard Menu Button Action
+
+    public void OnLeaderboardBackPress()
+    {
+        if (isGameStarted)
+        {
+            GoToPauseMenu();
+        }
+        else
+        {
+            GoToMainMenu();
+        }
+    }
+    
+    #endregion
 }

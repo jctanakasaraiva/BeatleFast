@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class Player2 : MonoBehaviour
     [SerializeField] private AudioSource _biteAudioSource;
     [SerializeField] private Animator animator;
     [SerializeField] private TrailRenderer _trailRenderer;
+    [SerializeField] private SpriteRenderer leftWing, rightWing;
+    [SerializeField] private Color playerWingsColor;
+    
     
     private Vector2 direction;
     private bool gameOver;
@@ -24,10 +28,10 @@ public class Player2 : MonoBehaviour
         GameEvents.Instance.OnItemCollide += updateSpeed;
     }
     
-
-    // Update is called once per frame
     void Update()
     {
+        leftWing.color = playerWingsColor;
+        rightWing.color = playerWingsColor;
         #region Gamepad test
         /*
         foreach (KeyCode vKey in System.Enum.GetValues(typeof(KeyCode)))
@@ -49,6 +53,7 @@ public class Player2 : MonoBehaviour
         {
             turboActive = true ;
             _trailRenderer.emitting = true;
+            
         }
         else
         {
@@ -67,12 +72,14 @@ public class Player2 : MonoBehaviour
             finalSpeed = moveSpeed + turboSpeed;
             turboBarValue -= turboDecreaseRate * Time.deltaTime;
             GameEvents.Instance.UpdateTurboSpeed(turboBarValue);
+            animator.SetBool("running", true);
         }
         else
         {
             _walkAudioSource.pitch = 1;
             finalSpeed = moveSpeed;
             GameEvents.Instance.UpdateTurboSpeed(turboBarValue);
+            animator.SetBool("running", false);
         }
 
         if (!turboActive && turboBarValue <= 100)
@@ -118,7 +125,13 @@ public class Player2 : MonoBehaviour
         if (collider.CompareTag("Item"))
         {
             _biteAudioSource.Play();
+            animator.SetBool("biting", true);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        animator.SetBool("biting", false);
     }
 
     private void GameOver()
