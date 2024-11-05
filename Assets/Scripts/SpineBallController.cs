@@ -9,6 +9,21 @@ public class SpineBallController : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip slowClip, fastClip;
 
+    private void Start()
+    {
+        GameEvents.Instance.OnGamePaused += GamePaused;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.Instance.OnGamePaused -= GamePaused;
+    }
+
+    private void GamePaused(bool isGamePaused)
+    {
+        _audioSource.mute = isGamePaused;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
