@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1852859188554718747}
   - component: {fileID: -1911844317124740722}
   - component: {fileID: -7656844487106758616}
+  - component: {fileID: 5101700574367344640}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -57,6 +58,9 @@ MonoBehaviour:
   _biteAudioSource: {fileID: -7656844487106758616}
   animator: {fileID: 5881146756168275479}
   _trailRenderer: {fileID: 8513217151738057505}
+  leftWing: {fileID: 0}
+  rightWing: {fileID: 0}
+  playerWingsColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &4727098248514334979
 Rigidbody2D:
   serializedVersion: 4
@@ -311,6 +315,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5101700574367344640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978469025512978578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525433a4525bc334193586cac0705daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5518186466000772798
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +506,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1409664395
-  m_SortingLayer: -1
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Time: 0.15
   m_PreviewTimeScale: 1

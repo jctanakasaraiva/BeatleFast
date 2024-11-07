@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 2093149763714334641}
   - component: {fileID: 6342000190747787367}
   - component: {fileID: 3467006529331804057}
+  - component: {fileID: -5526490919519961886}
   m_Layer: 0
   m_Name: SprayBotle
   m_TagString: Untagged
@@ -624,3 +625,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-5526490919519961886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195175555081632492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525433a4525bc334193586cac0705daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

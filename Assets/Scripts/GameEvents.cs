@@ -40,4 +40,7 @@ public class GameEvents : MonoBehaviour
 
     public void GamePaused(bool isGamePaused) => OnGamePaused?.Invoke(isGamePaused);
 
+    public event Action OnStopGame;
+    public void StopGame() => OnStopGame?.Invoke();
+
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2059488834250652742}
   - component: {fileID: -5737078658232135845}
   - component: {fileID: -4960637489359729532}
+  - component: {fileID: -3588428435528651434}
   m_Layer: 0
   m_Name: CommonApple
   m_TagString: Item
@@ -51,7 +52,6 @@ MonoBehaviour:
   ItemSpeedValue: 0.4
   _audioSource: {fileID: -4960637489359729532}
   spawnClip: {fileID: 8300000, guid: 4675e1ed923cc3e4b834fa223792293a, type: 3}
-  destroyClip: {fileID: 8300000, guid: de9e97e8535d25a48a34a5b2788fb90b, type: 3}
   audioSourcePitch: 1.1
 --- !u!212 &2059488834250652742
 SpriteRenderer:
@@ -284,3 +284,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3588428435528651434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489325322127285535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525433a4525bc334193586cac0705daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

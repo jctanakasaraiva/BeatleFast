@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7623641174617542076}
   - component: {fileID: 4637250943495878015}
   - component: {fileID: 3007812837774348065}
+  - component: {fileID: -2422666102467626825}
   m_Layer: 0
   m_Name: CommonGrapes
   m_TagString: Item
@@ -51,7 +52,6 @@ MonoBehaviour:
   ItemSpeedValue: 1
   _audioSource: {fileID: 3007812837774348065}
   spawnClip: {fileID: 8300000, guid: 4675e1ed923cc3e4b834fa223792293a, type: 3}
-  destroyClip: {fileID: 8300000, guid: de9e97e8535d25a48a34a5b2788fb90b, type: 3}
   audioSourcePitch: 1.3
 --- !u!212 &7623641174617542076
 SpriteRenderer:
@@ -286,3 +286,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2422666102467626825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564192577392949902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525433a4525bc334193586cac0705daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

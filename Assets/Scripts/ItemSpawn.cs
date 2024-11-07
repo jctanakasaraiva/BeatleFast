@@ -22,6 +22,7 @@ public class ItemSpawn : MonoBehaviour
         GameEvents.Instance.OnGameOver += GameOver;
         GameEvents.Instance.OnStartGame += StartGame;
         GameEvents.Instance.OnPlayerMove += UpdatePlayerPosition;
+        GameEvents.Instance.OnStopGame += StopGame;
     }
     
     private IEnumerator SpawnItem()
@@ -77,6 +78,11 @@ public class ItemSpawn : MonoBehaviour
     {
         gameOver = false;
         StartCoroutine(SpawnItem());
+    }
+
+    private void StopGame()
+    {
+        StopAllCoroutines();
     }
 }
 

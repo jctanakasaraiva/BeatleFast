@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 732667132292411101}
   - component: {fileID: 7674402473758442339}
   - component: {fileID: 8380330086230512679}
+  - component: {fileID: -6592381104492791285}
   m_Layer: 0
   m_Name: GoldGrapes
   m_TagString: Item
@@ -51,7 +52,6 @@ MonoBehaviour:
   ItemSpeedValue: 10
   _audioSource: {fileID: 8380330086230512679}
   spawnClip: {fileID: 8300000, guid: d93fe329596821e4f8c6dab8794e6fd4, type: 3}
-  destroyClip: {fileID: 8300000, guid: de9e97e8535d25a48a34a5b2788fb90b, type: 3}
   audioSourcePitch: 1.2
 --- !u!212 &732667132292411101
 SpriteRenderer:
@@ -283,3 +283,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6592381104492791285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755302438392512950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525433a4525bc334193586cac0705daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

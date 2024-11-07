@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 385792653031866753}
   - component: {fileID: 3957391535162406254}
   - component: {fileID: 77080202264623338}
+  - component: {fileID: 4072248442372746765}
   m_Layer: 0
   m_Name: GoldPeach
   m_TagString: Item
@@ -51,7 +52,6 @@ MonoBehaviour:
   ItemSpeedValue: 15
   _audioSource: {fileID: 77080202264623338}
   spawnClip: {fileID: 8300000, guid: d93fe329596821e4f8c6dab8794e6fd4, type: 3}
-  destroyClip: {fileID: 8300000, guid: de9e97e8535d25a48a34a5b2788fb90b, type: 3}
   audioSourcePitch: 1.3
 --- !u!212 &385792653031866753
 SpriteRenderer:
@@ -284,3 +284,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4072248442372746765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218631309516812644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525433a4525bc334193586cac0705daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -59,6 +59,7 @@ public class MenuManager : MonoBehaviour
         OpenMainMenu();
         GameEvents.Instance.OnGameOver += OpenGameOverMenu;
         GameEvents.Instance.OnNewRecord += OpenNewRecordMenu;
+        GameEvents.Instance.OnStartGame += Unpause;
     }
 
     private void Update()
@@ -121,11 +122,14 @@ public class MenuManager : MonoBehaviour
 
     private void OpenMainMenu()
     {
+        GameEvents.Instance.StopGame();
+        
         isGameStarted = false;
         CloseAllMenus();
         _mainMenuCanvas.SetActive(true);
         
         EventSystem.current.SetSelectedGameObject(_mainMenuFirst);
+        
     }
 
     private void OpenGameOverMenu(bool gameOverStatus)
