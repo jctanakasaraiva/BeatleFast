@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
         GameEvents.Instance.OnScreenUpdate += UpdateScreen;
         GameEvents.Instance.OnStartGame += StartGame;
         GameEvents.Instance.OnGameOver += GameOver;
+        GameEvents.Instance.OnGamePaused += HideInGameHud;
     }
 
     private void UpdateScreen(int score, float speed)
@@ -39,11 +40,9 @@ public class UIManager : MonoBehaviour
         inGameHud.SetActive(true);
     }
     
-    private void HideInGameHud(bool other)
+    private void HideInGameHud(bool isPaused)
     {
-        inGameHud.SetActive(false);
+        inGameHud.SetActive(!isPaused);
     }
-
-    
     
 }

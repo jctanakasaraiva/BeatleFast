@@ -20,6 +20,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _audioMenuCanvas;
     [SerializeField] private GameObject _newRecordMenuCanvas;
     [SerializeField] private GameObject _leaderboardMenuCanvas;
+    [SerializeField] private GameObject _selectColorMenuCanvas;
 
     [Header("First Selected Options")]
     [SerializeField] private GameObject _mainMenuFirst;
@@ -32,6 +33,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _audioMenuFirst;
     [SerializeField] private GameObject _newRecordMenuFirst;
     [SerializeField] private GameObject _leaderboardMenuFirst;
+    [SerializeField] private GameObject _selectColorMenuFirst;
 
     [Header("New Record Menu Options")] 
     [SerializeField] private TextMeshProUGUI recordText;
@@ -96,7 +98,6 @@ public class MenuManager : MonoBehaviour
         isPaused = false;
         GameEvents.Instance.GamePaused(isPaused);
         Time.timeScale = 1f;
-
         CloseAllMenus();
     }
 
@@ -116,6 +117,7 @@ public class MenuManager : MonoBehaviour
         _audioMenuCanvas.SetActive(false);
         _newRecordMenuCanvas.SetActive(false);
         _leaderboardMenuCanvas.SetActive(false);
+        _selectColorMenuCanvas.SetActive(false);
         
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -130,6 +132,14 @@ public class MenuManager : MonoBehaviour
         
         EventSystem.current.SetSelectedGameObject(_mainMenuFirst);
         
+    }
+
+    private void OpenSelectColorMenu()
+    {
+        CloseAllMenus();
+        _selectColorMenuCanvas.SetActive(true);
+        
+        EventSystem.current.SetSelectedGameObject(_selectColorMenuFirst);
     }
 
     private void OpenGameOverMenu(bool gameOverStatus)
@@ -152,7 +162,6 @@ public class MenuManager : MonoBehaviour
         scoreIsRecord = isScoreRecord;
         speedIsRecord = isSpeedRecord;
         timeIsRecord = isTimeRecord;
-        print(scoreIsRecord.ToString() + speedIsRecord + timeIsRecord);
         int scoreRecord = PlayerPrefs.GetInt("score");
         float SpeedRecord = PlayerPrefs.GetFloat("speed");
         float TimeRecord = PlayerPrefs.GetFloat("time");
@@ -337,6 +346,11 @@ public class MenuManager : MonoBehaviour
     public void GoToMainMenu()
     {
         OpenMainMenu();
+    }
+
+    public void GoToSelectColorMenu()
+    {
+        OpenSelectColorMenu();
     }
 
     public void GoToLeaderboardMenu()

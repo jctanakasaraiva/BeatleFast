@@ -14,7 +14,6 @@ public class Player2 : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private SpriteRenderer leftWing, rightWing;
-    [SerializeField] private Color playerWingsColor;
     
     
     private Vector2 direction;
@@ -25,13 +24,12 @@ public class Player2 : MonoBehaviour
 
     private void Awake()
     {
+        UpdatePlayerColor();
         GameEvents.Instance.OnItemCollide += updateSpeed;
     }
     
     void Update()
     {
-        leftWing.color = playerWingsColor;
-        rightWing.color = playerWingsColor;
         #region Gamepad test
         /*
         foreach (KeyCode vKey in System.Enum.GetValues(typeof(KeyCode)))
@@ -139,5 +137,15 @@ public class Player2 : MonoBehaviour
         gameOver = true;
         GameEvents.Instance.GameOver(gameOver);
         Destroy(gameObject);
+    }
+
+    private void UpdatePlayerColor()
+    {
+        var red = PlayerPrefs.GetFloat("red");
+        var green = PlayerPrefs.GetFloat("green");
+        var blue = PlayerPrefs.GetFloat("blue");
+        var color = new Color(red, green, blue, 1);
+        leftWing.color = color;
+        rightWing.color = color;
     }
 }

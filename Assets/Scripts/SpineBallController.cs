@@ -38,13 +38,17 @@ public class SpineBallController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (_audioSource.isActiveAndEnabled)
         {
-            _audioSource.clip = slowClip;
-            if (!_audioSource.isPlaying)
+            if (other.CompareTag("Player"))
             {
-                _audioSource.Play();
+                _audioSource.clip = slowClip;
+                if (!_audioSource.isPlaying)
+                {
+                    _audioSource.Play();
+                }
             }
         }
+        
     }
 }
