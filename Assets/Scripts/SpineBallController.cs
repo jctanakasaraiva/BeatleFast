@@ -9,7 +9,7 @@ public class SpineBallController : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip slowClip, fastClip;
 
-    private void Start()
+    private void Awake()
     {
         GameEvents.Instance.OnGamePaused += GamePaused;
     }
