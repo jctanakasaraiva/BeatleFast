@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject PlayerPrefab;
-    
+
     private bool gameStarted;
-    
+
     private int playerScore;
     private float playerSpeed;
     private float currentTime;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         GameEvents.Instance.OnStartGame += StartGame;
         GameEvents.Instance.OnGameOver += StopGame;
     }
-
+    
     private void Update()
     {
         PlayTimer(gameStarted);
@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
 
         if (isScoreRecord || isSpeedRecord || isTimeRecord)
         {
-            print(currentTime + " - " + timeRecord);
             GameEvents.Instance.ShowNewRecord(isScoreRecord, isSpeedRecord, isTimeRecord);
         }
     }

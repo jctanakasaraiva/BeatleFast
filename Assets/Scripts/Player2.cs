@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class Player2 : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class Player2 : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private SpriteRenderer leftWing, rightWing;
-    [SerializeField] private Color playerWingsColor;
-    
     
     private Vector2 direction;
     private bool gameOver;
@@ -25,13 +24,13 @@ public class Player2 : MonoBehaviour
 
     private void Awake()
     {
+        UpdatePlayerColor();
         GameEvents.Instance.OnItemCollide += updateSpeed;
     }
     
     void Update()
     {
-        leftWing.color = playerWingsColor;
-        rightWing.color = playerWingsColor;
+        
         #region Gamepad test
         /*
         foreach (KeyCode vKey in System.Enum.GetValues(typeof(KeyCode)))
@@ -107,6 +106,18 @@ public class Player2 : MonoBehaviour
             animator.SetBool("walking", false);
         }
             
+    }
+
+    private void UpdatePlayerColor()
+    {
+        var red = PlayerPrefs.GetFloat("red");
+        var green = PlayerPrefs.GetFloat("green");
+        var blue = PlayerPrefs.GetFloat("blue");
+        var color = new Color(red, green, blue);
+        
+        leftWing.color = color;
+        rightWing.color = color;
+
     }
     
     private void updateSpeed(int score, float speed)
