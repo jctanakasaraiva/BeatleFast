@@ -43,4 +43,7 @@ public class GameEvents : MonoBehaviour
     public event Action OnStopGame;
     public void StopGame() => OnStopGame?.Invoke();
 
+    public event Action<AudioClip> OnChangeMusic;
+    public void ChangeMusic(AudioClip clip) => OnChangeMusic?.Invoke(clip);
+
 }

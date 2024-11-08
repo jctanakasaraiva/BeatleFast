@@ -9,6 +9,7 @@ public class VolumeSettings : MonoBehaviour
 {
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sFXSlider;
     [SerializeField] private Slider playerSlider;
     [SerializeField] private Slider enemySlider;
@@ -23,6 +24,7 @@ public class VolumeSettings : MonoBehaviour
         else
         {
             SetMasterAudio();
+            SetMusicAudio();
             SetSFXAudio();
             SetPlayerAudio();
             SetEnemyAudio();
@@ -35,6 +37,12 @@ public class VolumeSettings : MonoBehaviour
         float volume = masterSlider.value;
         mixer.SetFloat("master", Mathf.Log10(volume)*20);
         PlayerPrefs.SetFloat("masterVolume", volume);
+    }
+    public void SetMusicAudio()
+    {
+        float volume = musicSlider.value;
+        mixer.SetFloat("music", Mathf.Log10(volume)*20);
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
     public void SetSFXAudio()
     {
@@ -64,12 +72,14 @@ public class VolumeSettings : MonoBehaviour
     private void LoadVolume()
     {
         masterSlider.value = PlayerPrefs.GetFloat("masterVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
         sFXSlider.value = PlayerPrefs.GetFloat("sfxVolume");
         playerSlider.value = PlayerPrefs.GetFloat("playerVolume");
         enemySlider.value = PlayerPrefs.GetFloat("enemyVolume");
         itemSlider.value = PlayerPrefs.GetFloat("itemsVolume");
         
         SetMasterAudio();
+        SetMusicAudio();
         SetSFXAudio();
         SetPlayerAudio();
         SetEnemyAudio();

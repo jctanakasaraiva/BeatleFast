@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class SFXControl : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource gameOverAudioSource;
+    [SerializeField] private AudioSource MusicAudioSource;
     [SerializeField] private AudioClip gameOverClip;
     void Start()
     {
         GameEvents.Instance.OnGameOver += GameOver;
+        GameEvents.Instance.OnChangeMusic += ChangeMusic;
     }
 
     private void GameOver(bool obj)
     {
-        _audioSource.PlayOneShot(gameOverClip);
+        gameOverAudioSource.PlayOneShot(gameOverClip);
+    }
+
+    private void ChangeMusic(AudioClip clip)
+    {
+        MusicAudioSource.clip = clip;
+        MusicAudioSource.Play();
     }
 }

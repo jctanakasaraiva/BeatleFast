@@ -39,7 +39,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI bestSpeedText;
     [SerializeField] private TextMeshProUGUI bestTimeText;
-    
+
+    [Header("Music Clips")] 
+    [SerializeField] private AudioClip introClip;
+    [SerializeField] private AudioClip musicClip;
     
     
     private int scoreRecord;
@@ -127,6 +130,7 @@ public class MenuManager : MonoBehaviour
         _mainMenuCanvas.SetActive(true);
         
         EventSystem.current.SetSelectedGameObject(_mainMenuFirst);
+        GameEvents.Instance.ChangeMusic(introClip);
         
     }
 
@@ -331,6 +335,7 @@ public class MenuManager : MonoBehaviour
         isGameStarted = true;
         GameEvents.Instance.StartGame();
         CloseAllMenus();
+        GameEvents.Instance.ChangeMusic(musicClip);
     }
     
     public void GotoCreditMenu()
